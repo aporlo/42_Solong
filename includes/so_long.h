@@ -16,21 +16,29 @@ typedef struct s_vector
     int     y;
 }   t_vector;
 
-typedef struct s_checkmap
+typedef struct s_map
 {
-    t_vector    size;
-    t_vector    point;
-}   t_checkmap;
+    char    **grid;
+    int     width;
+    int     hight;
+    int     P;
+    int     C;
+    int     E;
 
-typedef struct s_datamap
+}   t_map;
+
+typedef struct s_data
 {
-    char    **map;
-}   t_datamap;
+    t_map     map;
+    char        *filedata;
+}   t_data;
 
 void    error_line(char *msg, char *line);
 void    error_file(char *msg);
 
-char    **read_map(char *file);
+char   **read_map(t_data data, char *file);
 int     check_fextension(char *file);
-
+void    validate_map(t_data data);
+void    print_grid(t_map mapdata);
+size_t  ft_strlenn(const char *s);
 #endif

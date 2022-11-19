@@ -21,6 +21,7 @@ ifeq ($(UNAME), Linux)
 				  -L$(PRINTF_DIR) -lftprintf \
 				  -L/usr/lib 
 else
+	SRCS_PLATFORM = game_Macos.c
 	MLX_DIR		= mlx
 	MLX_FLAGS	= -L$(MLX_DIR) -lmlx \
 				  -framework OpenGL \
@@ -36,9 +37,6 @@ endif
 
 BUILD_DIR	= build
 SRC_DIR		= ./srcs
-# SRCS		=	$(SRCS_PLATFORM) \
-				main.c \
-				error.c \
 
 SRCS		=	main.c \
 			error.c \
