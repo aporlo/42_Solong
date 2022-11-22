@@ -10,6 +10,7 @@
 # include "mlx.h"
 # include "ft_printf.h"
 
+#define PIXEL   32
 typedef struct s_vector
 {
     int     x;
@@ -20,25 +21,44 @@ typedef struct s_map
 {
     char    **grid;
     int     width;
-    int     hight;
+    int     height;
     int     P;
     int     C;
     int     E;
 
 }   t_map;
 
+typedef struct s_image
+{
+    void	*img;
+	char	*addr;
+    int     w;
+    int     h;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}   t_image;
+
+
 typedef struct s_data
 {
-    t_map     map;
-    char        *filedata;
+    t_map   map;
+    char    *filedata;
+    void	*mlx;
+	void	*mlx_win;
 }   t_data;
 
 void    error_line(char *msg, char *line);
 void    error_file(char *msg);
+size_t  ft_strlenn(const char *s);
 
-char   **read_map(t_data data, char *file);
+void    read_map(t_data *data, char *file);
 int     check_fextension(char *file);
 void    validate_map(t_data data);
 void    print_grid(t_map mapdata);
-size_t  ft_strlenn(const char *s);
+void    create_wall(t_data *data, t_image image);
+void    create_floor(t_data *data, t_image image);
+void    create_item(t_data *data, t_image image);
+void    create_tree(t_data *data, t_image image);
+
 #endif

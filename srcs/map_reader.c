@@ -43,10 +43,10 @@ size_t	ft_strlenn(const char *s)
 	size_t	len;
 
 	len = 0;
-	if (!*s)
+	if (!s)
 		return (len);
 	while (s[len] != '\n')
-		len ++;
+		len++;
 	return (len);
 }
 
@@ -56,7 +56,7 @@ void print_grid(t_map mapdata)
     int     j;
 
     i = 0;
-    while (i < mapdata.hight)
+    while (i < mapdata.height)
     {
         j = 0;
         while (j < mapdata.width)
@@ -77,9 +77,9 @@ static char **creategrid(t_map mapdata, char *filedata)
     int     j;
     char    **grid;
 
-    grid = malloc(sizeof(char *) * mapdata.hight);
+    grid = malloc(sizeof(char *) * mapdata.height);
     i = 0;
-    while (i < mapdata.hight)
+    while (i < mapdata.height)
     {
         grid[i] = malloc(sizeof(char) * (mapdata.width));
         j = 0;
@@ -102,16 +102,15 @@ static char **creategrid(t_map mapdata, char *filedata)
     return (grid);
 }
 
-static void set_mapdata(t_data data)
+static void set_mapdata(t_data *data)
 {
-    data.map.hight = linecount(data.filedata);
-    data.map.width = ft_strlenn(data.filedata);
-    data.map.grid = creategrid(data.map, data.filedata);
-    print_grid(data.map);
-    validate_map(data);
+    data->map.height = linecount(data->filedata);
+    data->map.width = ft_strlenn(data->filedata);
+    data->map.grid = creategrid(data->map, data->filedata);
+    validate_map(*data);
 }
 
-char **read_map(t_data data, char *file)
+void    read_map(t_data *data, char *file)
 {
     int     fd;
     char    *str;
@@ -119,6 +118,7 @@ char **read_map(t_data data, char *file)
 
     if (check_fextension(file))
         error_file("Error\n file extention not .ber"); 
-    get_filedata(&data.filedata, file);
+    get_filedata(&data->filedata, file);
     set_mapdata(data);
+    print_grid(data->map);
 }

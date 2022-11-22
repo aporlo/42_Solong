@@ -56,7 +56,7 @@ static int check_wall(t_map mapdata)
     int j;
 
     i = 0;
-    while (i < mapdata.hight)
+    while (i < mapdata.height)
     {
         if (mapdata.grid[i][0] != '1'
             || mapdata.grid[i][mapdata.width - 1] != '1')
@@ -67,7 +67,7 @@ static int check_wall(t_map mapdata)
     while (j < mapdata.width)
     {
         if (mapdata.grid[0][j] != '1'
-            || mapdata.grid[mapdata.hight - 1][j] != '1')
+            || mapdata.grid[mapdata.height - 1][j] != '1')
             return (-1);
         j++;
     }
@@ -83,7 +83,8 @@ static void    check_path(t_map *mapdata)
     mapdata->C = 0;
     mapdata->E = 0;
     mapdata->P = 0;
-    while (i < mapdata->hight)
+    ft_printf("h3>>%d\n", mapdata->height);
+    while (i < mapdata->height)
     {
         j = 0;
         while (j < mapdata->width)
@@ -107,14 +108,15 @@ static void    check_path(t_map *mapdata)
 void    validate_map(t_data data)
 {
     check_path(&data.map);
+    ft_printf("h4>>%d\n", data.map.height);
     if (check_charactor(data) < 0)
-        error_file("Error\n The map can be composed of only these 01CEP");
+        error_file("Error\n The map can be composed of only these 01CEP\n");
     if (data.map.E != 1 || data.map.P != 1)
-        error_file("Error\n The map contain 1 exit and 1 starting position");
+        error_file("Error\n The map contain 1 exit and 1 starting position\n");
     if (data.map.C < 1)
-        error_file("Error\n The map contain  at least 1 collectible");
+        error_file("Error\n The map contain  at least 1 collectible\n");
     if (check_rec(data) < 0)
-        error_file("Error\n The map must be rectangular");
+        error_file("Error\n The map must be rectangular\n");
     if (check_wall(data.map) < 0)
-        error_file("Error\n The map must be closed/surrounded by walls");
+        error_file("Error\n The map must be closed/surrounded by walls\n");
 }
