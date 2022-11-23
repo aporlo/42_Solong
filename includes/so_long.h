@@ -11,6 +11,7 @@
 # include "ft_printf.h"
 
 #define PIXEL   32
+
 typedef struct s_vector
 {
     int     x;
@@ -59,6 +60,7 @@ void    print_grid(t_map mapdata);
 void    create_wall(t_data *data, t_image image);
 void    create_floor(t_data *data, t_image image);
 void    create_item(t_data *data, t_image image);
-void    create_tree(t_data *data, t_image image);
+void    create_player(t_data *data, t_image image);
+void    create_exit(t_data *data, t_image image);
 
 #endif

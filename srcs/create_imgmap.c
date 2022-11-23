@@ -60,24 +60,18 @@ void    create_item(t_data *data, t_image image)
     int     y;
 
     x = 0;
-    image.addr = "images/carrot.xpm";
+    image.addr = "images/carrot01.xpm";
     image.img = mlx_xpm_file_to_image(data->mlx, image.addr, &image.w, &image.h);
     while(x < data->map.height)
     {
-        ft_printf("h2>>%d\n", data->map.height);
         y = 0;
         while (y < data->map.width)
         {
             if(data->map.grid[x][y]) 
             {
                 print_grid(data->map);
-                // printf("", data->map.grid[x][y]);
                 if (data->map.grid[x][y] == 'C')
-                {
-                    ft_printf("x>>%d\n", x);
-                    ft_printf("y>>%d\n", y);
                     mlx_put_image_to_window(data->mlx, data->mlx_win, image.img, y*PIXEL, x*PIXEL);
-                }
             }
             y++;
         }
@@ -85,15 +79,50 @@ void    create_item(t_data *data, t_image image)
     }
 }
 
-void    create_tree(t_data *data, t_image image)
+void    create_player(t_data *data, t_image image)
 {
     int     x;
     int     y;
 
-    x = 4;
-    y = 5;
-    image.addr = "images/tree.xpm";
+    x = 0;
+    image.addr = "images/01-player.xpm";
     image.img = mlx_xpm_file_to_image(data->mlx, image.addr, &image.w, &image.h);
-    if (data) 
-        mlx_put_image_to_window(data->mlx, data->mlx_win, image.img, y*PIXEL, x*PIXEL);
+    while(x < data->map.height)
+    {
+        y = 0;
+        while (y < data->map.width)
+        {
+            if(data->map.grid[x][y]) 
+            {
+                if (data->map.grid[x][y] == 'P')
+                    mlx_put_image_to_window(data->mlx, data->mlx_win, image.img, y*PIXEL, x*PIXEL);
+            }
+            y++;
+        }
+        x++;
+    }
+}
+
+void    create_exit(t_data *data, t_image image)
+{
+    int     x;
+    int     y;
+
+    x = 0;
+    image.addr = "images/door.xpm";
+    image.img = mlx_xpm_file_to_image(data->mlx, image.addr, &image.w, &image.h);
+    while(x < data->map.height)
+    {
+        y = 0;
+        while (y < data->map.width)
+        {
+            if(data->map.grid[x][y]) 
+            {
+                if (data->map.grid[x][y] == 'E')
+                    mlx_put_image_to_window(data->mlx, data->mlx_win, image.img, y*PIXEL, x*PIXEL);
+            }
+            y++;
+        }
+        x++;
+    }
 }
