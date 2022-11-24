@@ -10,7 +10,19 @@
 # include "mlx.h"
 # include "ft_printf.h"
 
-#define PIXEL   32
+#  define PIXEL             32
+#  define KEY_CTRL			256
+#  define KEY_ENTER			36
+#  define KEY_SPACE			49
+#  define KEY_ESC			53
+#  define KEY_LEFT			123
+#  define KEY_RIGHT			124
+#  define KEY_UP			126
+#  define KEY_DOWN			125
+#  define KEY_A				0
+#  define KEY_S				1
+#  define KEY_D				2
+#  define KEY_W				13
 
 typedef struct s_vector
 {
@@ -26,7 +38,6 @@ typedef struct s_map
     int     P;
     int     C;
     int     E;
-
 }   t_map;
 
 typedef struct s_image
@@ -35,18 +46,28 @@ typedef struct s_image
 	char	*addr;
     int     w;
     int     h;
-	int		bits_per_pixel;
-	int		line_length;
+	int		bpp;
+	int		line;
 	int		endian;
+    t_vector    v;
 }   t_image;
 
+typedef struct s_player
+{
+    t_image    img;
+}   t_player;
 
 typedef struct s_data
 {
-    t_map   map;
-    char    *filedata;
-    void	*mlx;
-	void	*mlx_win;
+    t_map       map;
+    char        *filedata;
+    void	    *mlx;
+	void	    *mlx_win;
+    t_player    p;
+    t_image     *wall;
+    t_image     *floor;
+    t_image     *item;
+    t_image     *door;
 }   t_data;
 
 void    error_line(char *msg, char *line);

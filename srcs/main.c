@@ -1,4 +1,5 @@
 #include "so_long.h"
+static int keyhandler(int  keycode, t_data *data);
 
 static int	close_window(int keycode, t_data *data)
 {
@@ -25,6 +26,13 @@ int main(int argc, char **argv)
     create_item(&data, img);
     create_player(&data, img);
     create_exit(&data, img);
-    mlx_hook(data.mlx_win, 2, 1L<<0, close_window, &data);
+    mlx_hook(data.mlx_win, 2, 1L << 0, &keyhandler, &data);
+    mlx_hook(data.mlx_win, 17, 1L<<0, close_window, &data);
 	mlx_loop(data.mlx);
+}
+
+static int keyhandler(int  keycode, t_data *data)
+{
+    printf("keycode%d\n", keycode);
+    
 }
