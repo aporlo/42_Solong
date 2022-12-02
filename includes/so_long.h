@@ -30,6 +30,26 @@ typedef struct s_vector
     int     y;
 }   t_vector;
 
+typedef struct s_image
+{
+    void	*ptr;
+    int     w;
+    int     h;
+	int		bpp;
+	int		line;
+	int		endian;
+}   t_image;
+
+
+typedef struct s_pix
+{
+    char	    *addr;
+    t_vector        v;
+    t_image         img;
+    struct s_pix    *next;
+}   t_pix;
+
+
 typedef struct s_map
 {
     char    **grid;
@@ -40,21 +60,11 @@ typedef struct s_map
     int     E;
 }   t_map;
 
-typedef struct s_image
-{
-    void	*img;
-	char	*addr;
-    int     w;
-    int     h;
-	int		bpp;
-	int		line;
-	int		endian;
-    t_vector    v;
-}   t_image;
-
 typedef struct s_player
 {
-    t_image    img;
+    char	    *addr;
+    t_image     img;
+    t_vector    v;
 }   t_player;
 
 typedef struct s_data
@@ -63,11 +73,11 @@ typedef struct s_data
     char        *filedata;
     void	    *mlx;
 	void	    *mlx_win;
-    t_player    p;
-    t_image     *wall;
-    t_image     *floor;
-    t_image     *item;
-    t_image     *door;
+    t_player    *p;
+    t_player    *e;
+    t_list      *wall;
+    t_list      *floor;
+    t_list       *item;
 }   t_data;
 
 void    error_line(char *msg, char *line);
@@ -77,6 +87,9 @@ size_t  ft_strlenn(const char *s);
 void    read_map(t_data *data, char *file);
 int     check_fextension(char *file);
 void    validate_map(t_data data);
+void    render_player(t_data *data, t_player *p);
+void    render_exit(t_data *data, t_player *e);
+void    render_floor(t_data *data, t_list *floor);
 void    print_grid(t_map mapdata);
 void    create_wall(t_data *data, t_image image);
 void    create_floor(t_data *data, t_image image);

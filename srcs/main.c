@@ -33,6 +33,15 @@ int main(int argc, char **argv)
 
 static int keyhandler(int  keycode, t_data *data)
 {
-    printf("keycode%d\n", keycode);
-    
+    // printf("keycode%d\n", keycode);
+    if (keycode == KEY_LEFT || keycode == KEY_A)
+        ft_printf("left%d\n", keycode);
+    if (keycode == KEY_RIGHT || keycode == KEY_D)
+        ft_printf("right%d\n", keycode);
+    if (keycode == KEY_DOWN || keycode == KEY_S)
+        ft_printf("down%d\n", keycode);
+    if (keycode == KEY_UP || keycode == KEY_W)
+        ft_printf("up%d\n", keycode);
+    if (keycode == KEY_ESC)
+        ft_printf("exit%d\n", KEY_ESC);
 }

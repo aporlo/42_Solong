@@ -43,6 +43,7 @@ SRCS		=	main.c \
 			map_reader.c \
 			validate.c \
 			create_imgmap.c \
+			render.c \
 			gnl/get_next_line_utils.c \
 			gnl/get_next_line.c 
 

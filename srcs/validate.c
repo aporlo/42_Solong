@@ -18,10 +18,7 @@ static int  check_charactor(t_data data)
         {
             if (ft_strchr("01CEP", data.filedata[i]) == NULL
             || ft_strchr(data.filedata, '0') == NULL)
-            {
-                ft_printf("file>>>%s\n", ft_strchr("01CEP", data.filedata[i]));
                 return (-1);
-            }
         }
         i++;
     }
@@ -83,7 +80,6 @@ static void    check_path(t_map *mapdata)
     mapdata->C = 0;
     mapdata->E = 0;
     mapdata->P = 0;
-    ft_printf("h3>>%d\n", mapdata->height);
     while (i < mapdata->height)
     {
         j = 0;
@@ -108,7 +104,6 @@ static void    check_path(t_map *mapdata)
 void    validate_map(t_data data)
 {
     check_path(&data.map);
-    ft_printf("h4>>%d\n", data.map.height);
     if (check_charactor(data) < 0)
         error_file("Error\n The map can be composed of only these 01CEP\n");
     if (data.map.E != 1 || data.map.P != 1)

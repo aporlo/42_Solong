@@ -1,67 +1,78 @@
 #include "so_long.h"
+void    print_linklist(t_list *profile);
 
 void    create_floor(t_data *data, t_image image)
 {
-    int     x;
-    int     y;
+    int         x;
+    int         y;
+    t_pix       *content;
+    t_list      *new_data;
 
     x = 0;
-    image.addr = "images/floor.xpm";
-    image.img = mlx_xpm_file_to_image(data->mlx, image.addr, &image.w, &image.h);
+    data->floor = NULL;
     while(x < data->map.height)
     {
-        ft_printf("h2>>%d\n", data->map.height);
         y = 0;
         while (y < data->map.width)
         {
             if(data->map.grid[x][y]) 
             {
-                mlx_put_image_to_window(data->mlx, data->mlx_win, image.img, y*PIXEL, x*PIXEL);
+                content = malloc(sizeof(t_pix));
+                content->v.x = x;
+                content->v.y = y;
+                content->img.ptr = mlx_xpm_file_to_image(data->mlx, "images/floor.xpm", &image.w, &image.h);
+                new_data = ft_lstnew(content);
+                ft_lstadd_back(&data->floor, new_data);
             }
             y++;
         }
         x++;
     }
+    render_floor(data, data->floor);
 }
 
 void    create_wall(t_data *data, t_image image)
 {
-    int     x;
-    int     y;
+    int         x;
+    int         y;
+    t_pix       *content;
+    t_list      *new_data;
 
     x = 0;
-    image.addr = "images/wall.xpm";
-    image.img = mlx_xpm_file_to_image(data->mlx, image.addr, &image.w, &image.h);
+    data->wall = NULL;
     while(x < data->map.height)
     {
-        ft_printf("h2>>%d\n", data->map.height);
         y = 0;
         while (y < data->map.width)
         {
             if(data->map.grid[x][y]) 
             {
-                print_grid(data->map);
-                // printf("", data->map.grid[x][y]);
                 if (data->map.grid[x][y] == '1')
                 {
-                    ft_printf("x>>%d\n", x);
-                    ft_printf("y>>%d\n", y);
-                    mlx_put_image_to_window(data->mlx, data->mlx_win, image.img, y*PIXEL, x*PIXEL);
+                    content = malloc(sizeof(t_pix));
+                    content->v.x = x;
+                    content->v.y = y;
+                    content->img.ptr = mlx_xpm_file_to_image(data->mlx, "images/wall.xpm", &image.w, &image.h);
+                    new_data = ft_lstnew(content);
+                    ft_lstadd_back(&data->wall, new_data);
                 }
             }
             y++;
         }
         x++;
     }
+    render_floor(data, data->wall);
 }
+
 void    create_item(t_data *data, t_image image)
 {
-    int     x;
-    int     y;
+    int         x;
+    int         y;
+    t_pix       *content;
+    t_list      *new_data;
 
     x = 0;
-    image.addr = "images/carrot01.xpm";
-    image.img = mlx_xpm_file_to_image(data->mlx, image.addr, &image.w, &image.h);
+    data->item = NULL;
     while(x < data->map.height)
     {
         y = 0;
@@ -69,24 +80,30 @@ void    create_item(t_data *data, t_image image)
         {
             if(data->map.grid[x][y]) 
             {
-                print_grid(data->map);
                 if (data->map.grid[x][y] == 'C')
-                    mlx_put_image_to_window(data->mlx, data->mlx_win, image.img, y*PIXEL, x*PIXEL);
+                {
+                    content = malloc(sizeof(t_pix));
+                    content->v.x = x;
+                    content->v.y = y;
+                    content->img.ptr = mlx_xpm_file_to_image(data->mlx, "images/carrot01.xpm", &image.w, &image.h);
+                    new_data = ft_lstnew(content);
+                    ft_lstadd_back(&data->item, new_data);
+                }
             }
             y++;
         }
         x++;
     }
+    render_floor(data, data->item);
 }
 
 void    create_player(t_data *data, t_image image)
 {
     int     x;
     int     y;
+    t_player    *p;
 
     x = 0;
-    image.addr = "images/01-player.xpm";
-    image.img = mlx_xpm_file_to_image(data->mlx, image.addr, &image.w, &image.h);
     while(x < data->map.height)
     {
         y = 0;
@@ -95,22 +112,27 @@ void    create_player(t_data *data, t_image image)
             if(data->map.grid[x][y]) 
             {
                 if (data->map.grid[x][y] == 'P')
-                    mlx_put_image_to_window(data->mlx, data->mlx_win, image.img, y*PIXEL, x*PIXEL);
+                {
+                    p->addr = "images/01-player.xpm";
+                    p->v.x = x;
+                    p->v.y = y;
+                    p->img.ptr = mlx_xpm_file_to_image(data->mlx, p->addr, &image.w, &image.h);
+                }
             }
             y++;
         }
         x++;
     }
+    render_player(data, p);
 }
 
 void    create_exit(t_data *data, t_image image)
 {
     int     x;
     int     y;
+    t_player    *e;
 
     x = 0;
-    image.addr = "images/door.xpm";
-    image.img = mlx_xpm_file_to_image(data->mlx, image.addr, &image.w, &image.h);
     while(x < data->map.height)
     {
         y = 0;
@@ -119,10 +141,29 @@ void    create_exit(t_data *data, t_image image)
             if(data->map.grid[x][y]) 
             {
                 if (data->map.grid[x][y] == 'E')
-                    mlx_put_image_to_window(data->mlx, data->mlx_win, image.img, y*PIXEL, x*PIXEL);
+                {
+                    e->addr = "images/door.xpm";
+                    e->v.x = x;
+                    e->v.y = y;
+                    e->img.ptr = mlx_xpm_file_to_image(data->mlx, e->addr, &image.w, &image.h);
+                }
             }
             y++;
         }
         x++;
     }
+    render_player(data, e);
+}
+
+void    print_linklist(t_list *profile)
+{
+    t_pix    *temp;
+    while(profile != NULL)
+    {
+        temp = (t_pix *)profile->content;
+        printf("vector x is %d ,", temp->v.x);
+        printf(" %d\n", temp->v.y);
+        profile = profile->next;
+    }
+    printf("NULL\n");
 }
