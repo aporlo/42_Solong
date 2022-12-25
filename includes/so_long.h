@@ -23,6 +23,10 @@
 #  define KEY_S				1
 #  define KEY_D				2
 #  define KEY_W				13
+#  define DIR_LEFT          0
+#  define DIR_RIGHT         1
+#  define DIR_UP            2
+#  define DIR_DOWN          3
 
 typedef struct s_vector
 {
@@ -43,7 +47,8 @@ typedef struct s_image
 
 typedef struct s_pix
 {
-    char	    *addr;
+    int             is_show;
+    char	        *addr;
     t_vector        v;
     t_image         img;
     struct s_pix    *next;
@@ -65,6 +70,8 @@ typedef struct s_player
     char	    *addr;
     t_image     img;
     t_vector    v;
+    int         moved;
+    int         item;
 }   t_player;
 
 typedef struct s_data
@@ -73,23 +80,24 @@ typedef struct s_data
     char        *filedata;
     void	    *mlx;
 	void	    *mlx_win;
-    t_player    *p;
-    t_player    *e;
+    t_player    p;
+    t_player    e;
     t_list      *wall;
     t_list      *floor;
-    t_list       *item;
+    t_list      *item;
 }   t_data;
 
 void    error_line(char *msg, char *line);
 void    error_file(char *msg);
 size_t  ft_strlenn(const char *s);
+void	*delete_node(t_pix *content);
 
 void    read_map(t_data *data, char *file);
 int     check_fextension(char *file);
-void    validate_map(t_data data);
-void    render_player(t_data *data, t_player *p);
-void    render_exit(t_data *data, t_player *e);
-void    render_floor(t_data *data, t_list *floor);
+void    validate_map(t_data *data);
+void    render_one(t_data *data, t_player *obj);
+void    render_multi(t_data *data, t_list *obj);
+void    render_all(t_data *data);
 void    print_grid(t_map mapdata);
 void    create_wall(t_data *data, t_image image);
 void    create_floor(t_data *data, t_image image);

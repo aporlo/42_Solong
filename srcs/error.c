@@ -23,3 +23,8 @@ void	error_file(char *msg)
 	ft_putstr_fd(msg, STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }
+
+void	*delete_node(t_pix *content)
+{
+	free(content);
+}

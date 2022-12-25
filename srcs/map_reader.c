@@ -107,7 +107,7 @@ static void set_mapdata(t_data *data)
     data->map.height = linecount(data->filedata);
     data->map.width = ft_strlenn(data->filedata);
     data->map.grid = creategrid(data->map, data->filedata);
-    validate_map(*data);
+    validate_map(data);
 }
 
 void    read_map(t_data *data, char *file)
@@ -120,5 +120,4 @@ void    read_map(t_data *data, char *file)
         error_file("Error\n file extention not .ber"); 
     get_filedata(&data->filedata, file);
     set_mapdata(data);
-    // print_grid(data->map);
 }

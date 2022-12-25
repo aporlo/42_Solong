@@ -71,28 +71,28 @@ static int check_wall(t_map mapdata)
     return (0);
 }
 
-static void    check_path(t_map *mapdata)
+static void    check_path(t_data *data)
 {
     int     i;
     int     j;
 
     i = 0;
-    mapdata->C = 0;
-    mapdata->E = 0;
-    mapdata->P = 0;
-    while (i < mapdata->height)
+    data->map.C = 0;
+    data->map.E = 0;
+    data->map.P = 0;
+    while (i < data->map.height)
     {
         j = 0;
-        while (j < mapdata->width)
+        while (j < data->map.width)
         {
-            if(mapdata->grid[i][j]) 
+            if(data->map.grid[i][j]) 
             {
-                if(mapdata->grid[i][j] == 'P')
-                    mapdata->P++;
-                if(mapdata->grid[i][j] == 'C') 
-                    mapdata->C++;
-                if(mapdata->grid[i][j] == 'E')
-                    mapdata->E++;
+                if(data->map.grid[i][j] == 'P')
+                    data->map.P++;
+                if(data->map.grid[i][j] == 'C') 
+                    data->map.C++;
+                if(data->map.grid[i][j] == 'E')
+                    data->map.E++;
             }
             j++;
         }
@@ -101,17 +101,17 @@ static void    check_path(t_map *mapdata)
     }
 }
 
-void    validate_map(t_data data)
+void    validate_map(t_data *data)
 {
-    check_path(&data.map);
-    if (check_charactor(data) < 0)
+    check_path(data);
+    if (check_charactor(*data) < 0)
         error_file("Error\n The map can be composed of only these 01CEP\n");
-    if (data.map.E != 1 || data.map.P != 1)
+    if (data->map.E != 1 || data->map.P != 1)
         error_file("Error\n The map contain 1 exit and 1 starting position\n");
-    if (data.map.C < 1)
+    if (data->map.C < 1)
         error_file("Error\n The map contain  at least 1 collectible\n");
-    if (check_rec(data) < 0)
+    if (check_rec(*data) < 0)
         error_file("Error\n The map must be rectangular\n");
-    if (check_wall(data.map) < 0)
+    if (check_wall(data->map) < 0)
         error_file("Error\n The map must be closed/surrounded by walls\n");
 }
