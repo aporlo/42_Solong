@@ -16,8 +16,6 @@ static void	movement(t_data *data, int direction);
 static void	walk(t_data *data, int direction);
 static void	get_item(t_data *data);
 static void	game_exit(t_data *data, int key);
-static void	free_pix(t_data *data, t_list *obj);
-static void	free_map(t_data *data);
 
 static int	close_window(int keycode, t_data *data)
 {
@@ -106,7 +104,7 @@ static void	walk(t_data *data, int direction)
 		data->p.v.y += 1;
 		data->p.moved += 1;
 	}
-	// printf("moved is%d\n", data->p.moved);
+	printf("moved is%d\n", data->p.moved);
 }
 
 static void	get_item(t_data *data)
@@ -150,42 +148,10 @@ static void	game_exit(t_data *data, int key)
 		free_pix(data, data->floor);
 		mlx_destroy_image(data->mlx, data->p.img.ptr);
 		mlx_destroy_image(data->mlx, data->e.img.ptr);
-		// if (data->map.grid)
-		// 	free(data->map.grid);
 		free_map(data);
-		printf("hello\n");
 		free(data->filedata);
-		printf("data%c\n", data->filedata);
-		printf("hello\n");
 		mlx_destroy_window(data->mlx, data->mlx_win);
 		exit(0);
 	}
 }
 
-static void	free_pix(t_data *data, t_list *obj)
-{
-	t_list	*temp;
-
-	temp = obj;
-	while (temp != NULL)
-	{
-		if (data->mlx)
-			mlx_destroy_image(data->mlx, ((t_pix *)temp->content)->img.ptr);
-		temp = temp->next;
-	}
-	ft_lstclear(&obj, delete_node);
-}
-
-static void	free_map(t_data *data)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y < data->map.height)
-	{
-		free(data->map.grid[y]);
-		y++;
-	}
-	free(data->map.grid);
-}

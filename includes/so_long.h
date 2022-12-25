@@ -90,6 +90,8 @@ typedef struct s_data
 void    error_line(char *msg, char *line);
 void    error_file(char *msg);
 size_t  ft_strlenn(const char *s);
+void	free_pix(t_data *data, t_list *obj);
+void	free_map(t_data *data);
 void	*delete_node(t_pix *content);
 
 void    read_map(t_data *data, char *file);

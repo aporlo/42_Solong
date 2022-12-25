@@ -24,6 +24,34 @@ void	error_file(char *msg)
 	exit(EXIT_FAILURE);
 }
 
+void	free_pix(t_data *data, t_list *obj)
+{
+	t_list	*temp;
+
+	temp = obj;
+	while (temp != NULL)
+	{
+		if (data->mlx)
+			mlx_destroy_image(data->mlx, ((t_pix *)temp->content)->img.ptr);
+		temp = temp->next;
+	}
+	ft_lstclear(&obj, delete_node);
+}
+
+void	free_map(t_data *data)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y < data->map.height)
+	{
+		free(data->map.grid[y]);
+		y++;
+	}
+	free(data->map.grid);
+}
+
 void	*delete_node(t_pix *content)
 {
 	free(content);
