@@ -1,5 +1,5 @@
 NAME		= so_long
-CC			= gcc 
+CC			= gcc
 CFLAGS		= -g
 RM			= /bin/rm -f
 
@@ -19,7 +19,7 @@ ifeq ($(UNAME), Linux)
 				  -I/usr/include
 	LIBS		= -L$(LIBFT_DIR) -lft \
 				  -L$(PRINTF_DIR) -lftprintf \
-				  -L/usr/lib 
+				  -L/usr/lib
 else
 	SRCS_PLATFORM = game_Macos.c
 	MLX_DIR		= mlx
@@ -32,7 +32,7 @@ else
 				  -I$(GNL_DIR) \
 				  -I$(MLX_DIR)
 	LIBS		= -L$(LIBFT_DIR) -lft \
-				  -L$(PRINTF_DIR) -lftprintf 
+				  -L$(PRINTF_DIR) -lftprintf
 endif
 
 BUILD_DIR	= build
@@ -42,10 +42,14 @@ SRCS		=	main.c \
 			error.c \
 			map_reader.c \
 			validate.c \
+			check_map.c \
+			init_image.c \
 			create_imgmap.c \
 			render.c \
+			player.c \
+			game.c \
 			gnl/get_next_line_utils.c \
-			gnl/get_next_line.c 
+			gnl/get_next_line.c
 
 OBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o)
 
@@ -65,7 +69,7 @@ $(OBJS): $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 libs:
 	@make -C $(LIBFT_DIR)
 	@make -C $(PRINTF_DIR)
-	@make -C $(MLX_DIR)	
+	@make -C $(MLX_DIR)
 
 bonus: all
 
@@ -83,7 +87,7 @@ clean:
 fclean: clean
 	make fclean -C $(LIBFT_DIR)
 	make fclean -C $(PRINTF_DIR)
-	make fclean -C $(MLX_DIR)	
+	make fclean -C $(MLX_DIR)
 	$(RM) $(NAME)
 
 .PHONY: all clean fclean re
