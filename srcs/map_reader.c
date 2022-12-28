@@ -6,7 +6,7 @@
 /*   By: lsomrat <lsomrat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 20:56:51 by lsomrat           #+#    #+#             */
-/*   Updated: 2022/12/27 21:13:36 by lsomrat          ###   ########.fr       */
+/*   Updated: 2022/12/28 16:22:06 by lsomrat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	print_grid(t_map mapdata)
 char	**creategrid(t_map mapdata, char *filedata)
 {
 	int		i;
-    int     j;
+	int		j;
 	char	**grid;
 
 	grid = malloc(sizeof(char *) * mapdata.height);
@@ -69,13 +69,10 @@ char	**creategrid(t_map mapdata, char *filedata)
 	while (i < mapdata.height)
 	{
 		grid[i] = malloc(sizeof(char) * (mapdata.width));
-        j = 0;
+		j = 0;
 		while (j < mapdata.width)
 		{
-            get_grid(i, j++, grid, filedata++);
-			// grid[i][j++] = *filedata;
-			// filedata++;
-			// j++;
+			get_grid(i, j++, grid, filedata++);
 			if (*filedata == '\n')
 			{
 				filedata += 1;
@@ -89,21 +86,9 @@ char	**creategrid(t_map mapdata, char *filedata)
 	return (grid);
 }
 
-static void **get_grid(int i, int j, char **grid, char *filedata)
+static void	**get_grid(int i, int j, char **grid, char *filedata)
 {
 	grid[i][j] = *filedata;
-// 	// filedata++;
-// 	// j++;
-// 	// if (*filedata == '\n')
-// 	// {
-// 	// 	filedata += 1;
-// 	// 	break ;
-// 	// }
-// 	// if (*filedata == '\0')
-// 	// 	break ;
-
-//     // j = 0;
-//     // return (&grid[i]);
 }
 
 void	read_map(t_data *data, char *file)

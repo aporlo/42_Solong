@@ -63,5 +63,3 @@ void	set_mapdata(t_data *data)
 	data->map.grid = creategrid(data->map, data->filedata);
 	validate_map(data);
 }
-
-

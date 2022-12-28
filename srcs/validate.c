@@ -6,7 +6,7 @@
 /*   By: lsomrat <lsomrat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 14:46:08 by lsomrat           #+#    #+#             */
-/*   Updated: 2022/12/27 20:49:16 by lsomrat          ###   ########.fr       */
+/*   Updated: 2022/12/28 16:33:06 by lsomrat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	check_fextension(char *file)
 {
-	int 	len;
-	char 	*str;
+	int		len;
+	char	*str;
 
 	len = ft_strlen(file);
 	if (len < 4)
@@ -94,7 +94,7 @@ void	check_path(t_data *data)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (i < data->map.height)
 	{
