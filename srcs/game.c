@@ -18,7 +18,7 @@ void	game_exit(t_data *data, int key)
 
 	x = data->p.v.x;
 	y = data->p.v.y;
-	if ((data->map.grid[y][x] == 'E' && data->p.item == data->map.C)
+	if ((data->map.grid[y][x] == 'E' && data->p.item == data->map.c)
 		|| key == KEY_ESC)
 	{
 		free_pix(data, data->item);

@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void	init_floor(t_data *data, int x, int y)
+void	init_floor(t_data *data, int x, int y, t_image image)
 {
 	t_pix		*content;
 	t_list		*new_data;
@@ -27,7 +27,7 @@ void	init_floor(t_data *data, int x, int y)
 	ft_lstadd_back(&data->floor, new_data);
 }
 
-void	init_wall(t_data *data, int x, int y)
+void	init_wall(t_data *data, int x, int y, t_image image)
 {
 	t_pix		*content;
 	t_list		*new_data;
@@ -42,7 +42,7 @@ void	init_wall(t_data *data, int x, int y)
 	ft_lstadd_back(&data->wall, new_data);
 }
 
-void	init_wall(t_data *data, int x, int y)
+void	init_item(t_data *data, int x, int y, t_image image)
 {
 	t_pix		*content;
 	t_list		*new_data;
@@ -57,7 +57,7 @@ void	init_wall(t_data *data, int x, int y)
 	ft_lstadd_back(&data->item, new_data);
 }
 
-void	init_player(t_data *data, int x, int y)
+void	init_player(t_data *data, int x, int y, t_image image)
 {
 	data->p.addr = "images/01-player.xpm";
 	data->p.v.x = x;

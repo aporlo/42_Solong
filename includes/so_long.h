@@ -22,7 +22,7 @@
 # include "mlx.h"
 # include "ft_printf.h"
 
-# define PIXELL		32
+# define PIXEL  	32
 # define KEY_CTRL	256
 # define KEY_ENTER	36
 # define KEY_SPACE	49
@@ -35,10 +35,10 @@
 # define KEY_S		1
 # define KEY_D		2
 # define KEY_W		13
-# define DIR_LEFTL	0
-# define DIR_RIGHTL	1
-# define DIR_UPL	2
-# define DIR_DOWNL	3
+# define DIR_LEFT	0
+# define DIR_RIGHT	1
+# define DIR_UP 	2
+# define DIR_DOWN	3
 
 typedef struct s_vector
 {
@@ -105,6 +105,7 @@ void	*delete_node(t_pix *content);
 
 void	read_map(t_data *data, char *file);
 void	set_mapdata(t_data *data);
+char	**creategrid(t_map mapdata, char *filedata);
 int		check_fextension(char *file);
 int		check_charactor(t_data data);
 int		check_wall(t_map mapdata);
@@ -115,10 +116,10 @@ void	render_one(t_data *data, t_player *obj);
 void	render_multi(t_data *data, t_list *obj);
 void	render_all(t_data *data);
 void	print_grid(t_map mapdata);
-void	init_floor(t_data *data, int x, int y);
-void	init_wall(t_data *data, int x, int y);
-void	init_item(t_data *data, int x, int y);
-void	init_player(t_data *data, int x, int y);
+void	init_floor(t_data *data, int x, int y, t_image image);
+void	init_wall(t_data *data, int x, int y, t_image image);
+void	init_item(t_data *data, int x, int y, t_image image);
+void	init_player(t_data *data, int x, int y, t_image image);
 void	create_wall(t_data *data, t_image image);
 void	create_floor(t_data *data, t_image image);
 void	create_item(t_data *data, t_image image);

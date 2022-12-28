@@ -25,7 +25,7 @@ void	create_floor(t_data *data, t_image image)
 		while (x < data->map.width)
 		{
 			if (data->map.grid[y][x])
-				init_floor(data, x, y);
+				init_floor(data, x, y, image);
 			x++;
 		}
 		y++;
@@ -49,7 +49,7 @@ void	create_wall(t_data *data, t_image image)
 			if (data->map.grid[y][x])
 			{
 				if (data->map.grid[y][x] == '1')
-					init_wall(data, x, y);
+					init_wall(data, x, y, image);
 			}
 			x++;
 		}
@@ -74,7 +74,7 @@ void	create_item(t_data *data, t_image image)
 			if (data->map.grid[y][x])
 			{
 				if (data->map.grid[y][x] == 'C')
-					init_item(data, x, y);
+					init_item(data, x, y, image);
 			}
 			x++;
 		}
@@ -96,7 +96,7 @@ void	create_player(t_data *data, t_image image)
 			if (data->map.grid[y][x])
 			{
 				if (data->map.grid[y][x] == 'P')
-					init_player(data, x, y);
+					init_player(data, x, y, image);
 			}
 			x++;
 		}

@@ -14,7 +14,14 @@
 
 int	check_fextension(char *file)
 {
-	if (!ft_strncmp(ft_strchr(file, '.'), ".ber", 4))
+	int 	len;
+	char 	*str;
+
+	len = ft_strlen(file);
+	if (len < 4)
+		return (0);
+	str = file + (len - 4);
+	if (!ft_strncmp(".ber", str, 4))
 		return (0);
 	return (1);
 }
@@ -87,7 +94,7 @@ void	check_path(t_data *data)
 {
 	int	i;
 	int	j;
-
+	
 	i = 0;
 	while (i < data->map.height)
 	{

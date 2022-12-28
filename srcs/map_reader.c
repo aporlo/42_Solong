@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-static void	get_grid(int i, int j, t_map mapdata, char *filedata);
+static void	**get_grid(int i, int j, char **grid, char *filedata);
 
 static char	*get_filedata(char **data, char *file)
 {
@@ -58,10 +58,10 @@ void	print_grid(t_map mapdata)
 	}
 }
 
-static char	**creategrid(t_map mapdata, char *filedata)
+char	**creategrid(t_map mapdata, char *filedata)
 {
 	int		i;
-	int		j;
+    int     j;
 	char	**grid;
 
 	grid = malloc(sizeof(char *) * mapdata.height);
@@ -69,42 +69,41 @@ static char	**creategrid(t_map mapdata, char *filedata)
 	while (i < mapdata.height)
 	{
 		grid[i] = malloc(sizeof(char) * (mapdata.width));
-		j = 0;
-		get_grid(i, j, mapdata, filedata);
-		// while (j < mapdata.width)
-		// {
-		// 	grid[i][j] = *filedata;
-		// 	filedata++;
-		// 	j++;
-		// 	if (*filedata == '\n')
-		// 	{
-		// 		filedata += 1;
-		// 		break ;
-		// 	}
-		// 	if (*filedata == '\0')
-		// 		break ;
-		// }
-		j = 0;
+        j = 0;
+		while (j < mapdata.width)
+		{
+            get_grid(i, j++, grid, filedata++);
+			// grid[i][j++] = *filedata;
+			// filedata++;
+			// j++;
+			if (*filedata == '\n')
+			{
+				filedata += 1;
+				break ;
+			}
+			if (*filedata == '\0')
+				break ;
+		}
 		i++;
 	}
 	return (grid);
 }
 
-static void	get_grid(int i, int j, t_map mapdata, char *filedata)
+static void **get_grid(int i, int j, char **grid, char *filedata)
 {
-	while (j < mapdata.width)
-	{
-		grid[i][j] = *filedata;
-		filedata++;
-		j++;
-		if (*filedata == '\n')
-		{
-			filedata += 1;
-			break ;
-		}
-		if (*filedata == '\0')
-			break ;
-	}
+	grid[i][j] = *filedata;
+// 	// filedata++;
+// 	// j++;
+// 	// if (*filedata == '\n')
+// 	// {
+// 	// 	filedata += 1;
+// 	// 	break ;
+// 	// }
+// 	// if (*filedata == '\0')
+// 	// 	break ;
+
+//     // j = 0;
+//     // return (&grid[i]);
 }
 
 void	read_map(t_data *data, char *file)
