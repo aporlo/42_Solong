@@ -29,20 +29,23 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		error_file("Error\n no args");
 	if (argc == 2)
+	{
 		read_map(&data, argv[1]);
-	img.h = data.map.height * PIXEL;
-	img.w = data.map.width * PIXEL;
-	data.mlx = mlx_init();
-	data.mlx_win = mlx_new_window(data.mlx, img.w, img.h, "So_long");
-	create_floor(&data, img);
-	create_wall(&data, img);
-	create_item(&data, img);
-	create_player(&data, img);
-	create_exit(&data, img);
-	mlx_loop_hook(data.mlx, render_all, &data);
-	mlx_hook(data.mlx_win, 2, 1L << 0, &keyhandler, &data);
-	mlx_hook(data.mlx_win, 17, 1L << 0, close_window, &data);
-	mlx_loop(data.mlx);
+		img.h = data.map.height * PIXEL;
+		img.w = data.map.width * PIXEL;
+		data.mlx = mlx_init();
+		data.mlx_win = mlx_new_window(data.mlx, img.w, img.h, "So_long");
+		create_floor(&data, img);
+		create_wall(&data, img);
+		create_item(&data, img);
+		create_player(&data, img);
+		create_exit(&data, img);
+		mlx_loop_hook(data.mlx, render_all, &data);
+		mlx_hook(data.mlx_win, 2, 1L << 0, &keyhandler, &data);
+		mlx_hook(data.mlx_win, 17, 1L << 0, close_window, &data);
+		mlx_loop(data.mlx);
+	}
+	return (0);
 }
 
 static int	keyhandler(int keycode, t_data *data)
