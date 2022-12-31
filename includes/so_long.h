@@ -99,6 +99,7 @@ typedef struct s_data
 void	error_line(char *msg, char *line);
 void	error_file(char *msg);
 size_t	ft_strlenn(const char *s);
+int		linecount(char *file);
 void	free_pix(t_data *data, t_list *obj);
 void	free_map(t_data *data);
 void	delete_node(void *content);
