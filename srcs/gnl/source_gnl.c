@@ -9,7 +9,7 @@
 /*   Updated: 2022/12/31 20:11:23 by lsomrat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-include "get_next_line.h"
+#include "get_next_line.h"
 
 void	free_buff(t_gnllist *buff)
 {
