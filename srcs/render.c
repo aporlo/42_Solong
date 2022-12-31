@@ -45,7 +45,7 @@ void	render_item(t_data *data, t_list *obj)
 	}
 }
 
-void	render_all(t_data *data)
+int	render_all(t_data *data)
 {
 	t_player	p;
 	t_player	e;
@@ -63,4 +63,5 @@ void	render_all(t_data *data)
 	render_item(data, c);
 	render_one(data, &e);
 	render_one(data, &p);
+	return (0);
 }

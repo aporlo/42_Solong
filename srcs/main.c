@@ -16,8 +16,7 @@ static int	keyhandler(int keycode, t_data *data);
 
 static int	close_window(int keycode, t_data *data)
 {
-	mlx_destroy_window(data->mlx, data->mlx_win);
-	return (0);
+	exit (0);
 }
 
 int	main(int argc, char **argv)
@@ -40,9 +39,9 @@ int	main(int argc, char **argv)
 		create_item(&data, img);
 		create_player(&data, img);
 		create_exit(&data, img);
-		mlx_loop_hook(data.mlx, render_all, &data);
+		mlx_loop_hook(data.mlx, &render_all, &data);
 		mlx_hook(data.mlx_win, 2, 1L << 0, &keyhandler, &data);
-		mlx_hook(data.mlx_win, 17, 1L << 0, close_window, &data);
+		mlx_hook(data.mlx_win, 17, 1L << 0, &close_window, &data);
 		mlx_loop(data.mlx);
 	}
 	return (0);
@@ -65,4 +64,5 @@ static int	keyhandler(int keycode, t_data *data)
 		movement(data, DIR_UP);
 	if (keycode == KEY_ESC)
 		game_exit(data, KEY_ESC);
+	return (0);
 }

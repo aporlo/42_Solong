@@ -35,7 +35,7 @@ void	free_pix(t_data *data, t_list *obj)
 			mlx_destroy_image(data->mlx, ((t_pix *)temp->content)->img.ptr);
 		temp = temp->next;
 	}
-	ft_lstclear(&obj, delete_node);
+	ft_lstclear(&obj, &delete_node);
 }
 
 void	free_map(t_data *data)
@@ -52,7 +52,7 @@ void	free_map(t_data *data)
 	free(data->map.grid);
 }
 
-void	*delete_node(t_pix *content)
+void	delete_node(void *content)
 {
 	free(content);
 }

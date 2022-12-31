@@ -38,6 +38,51 @@ size_t	ft_strlenn(const char *s)
 	return (len);
 }
 
+static int	fill(t_map map, int x, int y, char to_fill)
+{
+	static int door = 0;
+
+	if (map.grid[y][x] == to_fill)
+		door = 1;
+	map.grid[y][x] = '1';
+	if (map.grid[y][x - 1] != '1' && door == 0)
+		fill(map, (x - 1), y, to_fill);
+	if (map.grid[y][x + 1] != '1' && door == 0)
+		fill(map, (x + 1), y, to_fill);
+	if (map.grid[y - 1][x] != '1' && door == 0)
+		fill(map, x, (y - 1), to_fill);
+	if (map.grid[y + 1][x] != '1' && door == 0)
+		fill(map, x, (y + 1), to_fill);
+	return (door);
+}
+
+static int	check_validpath(t_data *data)
+{
+	int		x;
+	int		y;
+	int		i;
+	t_image	image;
+	t_data	copydata;
+
+	i = 0;
+	copydata.map.grid = malloc(sizeof(char **) * data->map.height);
+	while(i < data->map.height)
+	{
+		copydata.map.grid[i] = ft_strdup(data->map.grid[i]);
+		i++;
+	}	
+	x = data->p.v.x;
+	y = data->p.v.y;
+	copydata.map.height = data->map.height;
+	if (fill(copydata.map, x, y, 'E') > 0)
+	{
+		free_map(&copydata);
+		return (1);
+	}
+	free_map(&copydata);
+	return (0);
+}
+
 void	validate_map(t_data *data)
 {
 	check_path(data);
@@ -51,6 +96,8 @@ void	validate_map(t_data *data)
 		error_file("Error\n The map must be rectangular\n");
 	if (check_wall(data->map) < 0)
 		error_file("Error\n The map must be closed/surrounded by walls\n");
+	if (check_validpath(data) == 0)
+		error_file("Error\n The map not valid path\n");
 }
 
 void	set_mapdata(t_data *data)

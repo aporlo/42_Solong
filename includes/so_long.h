@@ -101,7 +101,7 @@ void	error_file(char *msg);
 size_t	ft_strlenn(const char *s);
 void	free_pix(t_data *data, t_list *obj);
 void	free_map(t_data *data);
-void	*delete_node(t_pix *content);
+void	delete_node(void *content);
 
 void	read_map(t_data *data, char *file);
 void	set_mapdata(t_data *data);
@@ -114,7 +114,7 @@ void	check_path(t_data *data);
 void	validate_map(t_data *data);
 void	render_one(t_data *data, t_player *obj);
 void	render_multi(t_data *data, t_list *obj);
-void	render_all(t_data *data);
+int		render_all(t_data *data);
 void	print_grid(t_map mapdata);
 void	init_floor(t_data *data, int x, int y, t_image image);
 void	init_wall(t_data *data, int x, int y, t_image image);

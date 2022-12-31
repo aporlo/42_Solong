@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-static void	**get_grid(int i, int j, char **grid, char *filedata);
+static void	get_grid(int i, int j, char **grid, char *filedata);
 
 static char	*get_filedata(char **data, char *file)
 {
@@ -86,7 +86,7 @@ char	**creategrid(t_map mapdata, char *filedata)
 	return (grid);
 }
 
-static void	**get_grid(int i, int j, char **grid, char *filedata)
+static void	get_grid(int i, int j, char **grid, char *filedata)
 {
 	grid[i][j] = *filedata;
 }
