@@ -104,11 +104,7 @@ void	check_path(t_data *data)
 			if (data->map.grid[i][j])
 			{
 				if (data->map.grid[i][j] == 'P')
-				{
-					data->p.v.y = i;
-					data->p.v.x = j;
-					data->map.p++;
-				}
+					init_p(data, i, j);
 				if (data->map.grid[i][j] == 'C')
 					data->map.c++;
 				if (data->map.grid[i][j] == 'E')

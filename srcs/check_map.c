@@ -12,50 +12,6 @@
 
 #include "so_long.h"
 
-int	linecount(char *file)
-{
-	int	line;
-
-	line = 1;
-	while (*file)
-	{
-		if (*file == '\n')
-			line++;
-		file++;
-	}
-	return (line);
-}
-
-size_t	ft_strlenn(const char *s)
-{
-	size_t	len;
-
-	len = 0;
-	if (!s)
-		return (len);
-	while (s[len] != '\n')
-		len++;
-	return (len);
-}
-
-static int	fill(t_map map, int x, int y, char to_fill)
-{
-	static int door = 0;
-
-	if (map.grid[y][x] == to_fill)
-		door = 1;
-	map.grid[y][x] = '1';
-	if (map.grid[y][x - 1] != '1' && door == 0)
-		fill(map, (x - 1), y, to_fill);
-	if (map.grid[y][x + 1] != '1' && door == 0)
-		fill(map, (x + 1), y, to_fill);
-	if (map.grid[y - 1][x] != '1' && door == 0)
-		fill(map, x, (y - 1), to_fill);
-	if (map.grid[y + 1][x] != '1' && door == 0)
-		fill(map, x, (y + 1), to_fill);
-	return (door);
-}
-
 static int	check_validpath(t_data *data)
 {
 	int		x;
@@ -66,11 +22,11 @@ static int	check_validpath(t_data *data)
 
 	i = 0;
 	copydata.map.grid = malloc(sizeof(char **) * data->map.height);
-	while(i < data->map.height)
+	while (i < data->map.height)
 	{
 		copydata.map.grid[i] = ft_strdup(data->map.grid[i]);
 		i++;
-	}	
+	}
 	x = data->p.v.x;
 	y = data->p.v.y;
 	copydata.map.height = data->map.height;

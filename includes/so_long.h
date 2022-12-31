@@ -110,6 +110,8 @@ int		check_fextension(char *file);
 int		check_charactor(t_data data);
 int		check_wall(t_map mapdata);
 int		check_rec(t_data data);
+int		fill(t_map map, int x, int y, char to_fill);
+void	init_p(t_data *data, int i, int j);
 void	check_path(t_data *data);
 void	validate_map(t_data *data);
 void	render_one(t_data *data, t_player *obj);

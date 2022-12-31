@@ -25,8 +25,8 @@ int	main(int argc, char **argv)
 	t_data	data;
 	t_image	img;
 
-	if (argc == 1)
-		error_file("Error\n no args");
+	if (argc != 2)
+		error_file("Error\n");
 	if (argc == 2)
 	{
 		read_map(&data, argv[1]);
