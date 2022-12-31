@@ -50,7 +50,8 @@ SRCS		=	main.c \
 			game.c \
 			source.c \
 			gnl/get_next_line_utils.c \
-			gnl/get_next_line.c
+			gnl/get_next_line.c \
+			gnl/source_gnl.c
 
 OBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o)
 

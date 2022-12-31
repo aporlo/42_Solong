@@ -39,4 +39,5 @@ void		free_buff(t_gnllist *buff);
 int			get_newline(t_gnllist *buff);
 size_t		ft_strlen(const char *s);
 t_gnllist	*get_last(t_gnllist *buff);
+void		free_buff(t_gnllist *buff);
 #endif
