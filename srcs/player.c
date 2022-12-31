@@ -18,9 +18,6 @@ static void	get_item(t_data *data);
 
 void	movement(t_data *data, int direction)
 {
-	int		x;
-	int		y;
-
 	walk(data, direction);
 	get_item(data);
 	game_exit(data, 1);

@@ -41,7 +41,6 @@ void	free_pix(t_data *data, t_list *obj)
 void	free_map(t_data *data)
 {
 	int	y;
-	int	x;
 
 	y = 0;
 	while (y < data->map.height)

@@ -17,7 +17,6 @@ static int	check_validpath(t_data *data)
 	int		x;
 	int		y;
 	int		i;
-	t_image	image;
 	t_data	copydata;
 
 	i = 0;

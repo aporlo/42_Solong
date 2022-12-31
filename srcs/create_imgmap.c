@@ -36,8 +36,6 @@ void	create_wall(t_data *data, t_image image)
 {
 	int			x;
 	int			y;
-	t_pix		*content;
-	t_list		*new_data;
 
 	y = 0;
 	data->wall = NULL;
@@ -61,8 +59,6 @@ void	create_item(t_data *data, t_image image)
 {
 	int			x;
 	int			y;
-	t_pix		*content;
-	t_list		*new_data;
 
 	y = 0;
 	data->item = NULL;

@@ -93,10 +93,6 @@ static void	get_grid(int i, int j, char **grid, char *filedata)
 
 void	read_map(t_data *data, char *file)
 {
-	int		fd;
-	char	*str;
-	char	*filedata;
-
 	if (check_fextension(file))
 		error_file("Error\n file extention not .ber");
 	get_filedata(&data->filedata, file);

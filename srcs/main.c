@@ -14,14 +14,13 @@
 
 static int	keyhandler(int keycode, t_data *data);
 
-static int	close_window(int keycode, t_data *data)
+static int	close_window(void)
 {
 	exit (0);
 }
 
 int	main(int argc, char **argv)
 {
-	char	**mapfile;
 	t_data	data;
 	t_image	img;
 
