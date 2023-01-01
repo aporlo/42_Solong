@@ -6,7 +6,7 @@
 /*   By: lsomrat <lsomrat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 20:51:07 by lsomrat           #+#    #+#             */
-/*   Updated: 2022/12/25 20:51:11 by lsomrat          ###   ########.fr       */
+/*   Updated: 2022/12/31 23:39:33 by lsomrat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	moved(t_data *data, char vector, int direct)
 		data->p.v.y += 1 * direct;
 		data->p.moved += 1;
 	}
-	printf("moved is%d\n", data->p.moved);
+	ft_printf("moved is%d\n", data->p.moved);
 }
 
 static void	get_item(t_data *data)
